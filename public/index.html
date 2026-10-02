@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="it">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#f5f4ef">
+    <title>Ollama · Chat locale</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css" rel="stylesheet">
+    <link href="/styles.css" rel="stylesheet">
+  </head>
+  <body>
+    <div class="app-shell">
+      <aside class="sidebar" id="sidebar">
+        <div class="brand-row">
+          <div class="brand-mark" aria-hidden="true"><i class="bi bi-asterisk"></i></div>
+          <div class="brand-copy"><span class="brand-name">officina</span><span class="brand-caption">AI IN LOCALE</span></div>
+          <button class="icon-button sidebar-close" id="close-sidebar" type="button" aria-label="Chiudi menu"><i class="bi bi-x-lg"></i></button>
+        </div>
+
+        <button class="new-chat-button" id="new-chat" type="button">
+          <i class="bi bi-plus-lg"></i><span>Nuova conversazione</span><kbd>Ctrl K</kbd>
+        </button>
+
+        <div class="sidebar-section-heading"><span>CONVERSAZIONI</span><span id="chat-count" class="chat-count">0</span></div>
+        <nav class="chat-list" id="chat-list" aria-label="Conversazioni salvate"></nav>
+
+        <div class="sidebar-footer">
+          <div class="local-note-icon"><i class="bi bi-shield-lock"></i></div>
+          <div><span class="local-note-title">Resta tutto qui.</span><span class="local-note-copy">Le chat non lasciano questo dispositivo.</span></div>
+        </div>
+      </aside>
+
+      <main class="main-panel">
+        <header class="topbar">
+          <button class="icon-button menu-toggle" id="open-sidebar" type="button" aria-label="Apri menu"><i class="bi bi-layout-sidebar"></i></button>
+          <div class="topbar-context"><span class="context-label">SPAZIO PRIVATO</span><span class="context-divider">/</span><span id="current-chat-title" class="context-title">Nuova conversazione</span></div>
+          <div class="topbar-actions">
+            <div class="connection-status" id="connection-status" role="status"><span class="status-dot"></span><span id="connection-label">Connessione…</span></div>
+            <label class="visually-hidden" for="model-select">Modello Ollama</label>
+            <select class="form-select model-select" id="model-select" aria-label="Seleziona modello"></select>
+          </div>
+        </header>
+
+        <section class="conversation" id="conversation" aria-live="polite">
+          <div class="welcome-screen" id="welcome-screen">
+            <div class="welcome-kicker"><span class="kicker-line"></span> IL TUO SPAZIO DI LAVORO <span class="kicker-line"></span></div>
+            <h1>Le idee migliori<br>iniziano <span>da una domanda.</span></h1>
+            <p class="welcome-copy">Un modello locale. Una conversazione tutta tua.</p>
+            <div class="welcome-meta"><span class="meta-spark"><i class="bi bi-stars"></i></span><span id="welcome-model">Pronto quando vuoi.</span></div>
+          </div>
+          <div class="message-list" id="message-list"></div>
+        </section>
+
+        <footer class="composer-wrap">
+          <form class="composer" id="chat-form">
+            <label class="visually-hidden" for="message-input">Scrivi un messaggio</label>
+            <textarea id="message-input" rows="1" placeholder="Scrivi un messaggio…" maxlength="12000" required></textarea>
+            <div class="composer-bottom">
+              <span class="composer-hint"><kbd>Invio</kbd> per inviare · <kbd>Maiusc + Invio</kbd> per una nuova riga</span>
+              <button class="send-button" id="send-button" type="submit" aria-label="Invia messaggio" title="Invia messaggio"><i class="bi bi-arrow-up"></i></button>
+            </div>
+          </form>
+          <p class="composer-disclaimer">Le risposte sono generate da un modello locale e possono contenere imprecisioni.</p>
+        </footer>
+      </main>
+    </div>
+    <div class="sidebar-backdrop" id="sidebar-backdrop"></div>
+    <div class="copy-feedback" id="copy-feedback" role="status" aria-live="polite"></div>
+    <script src="/vendor/marked/marked.umd.js" defer></script>
+    <script src="/vendor/dompurify/purify.min.js" defer></script>
+    <script src="/app.js" defer></script>
+  </body>
+</html>
